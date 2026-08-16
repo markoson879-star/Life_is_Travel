@@ -1,167 +1,468 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Life is Travel — путешествия, маршруты, советы и вдохновение." />
-  <title>Life is Travel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Life is Travel — Пойдём гулять</title>
+<meta name="description" content="Авторские прогулки по городам. 10 идей для прогулок, маршруты и пошаговые гиды от Life is Travel." />
+<style>
+:root{
+  --bg:#f6f1e8;
+  --paper:#fffdf9;
+  --ink:#20201d;
+  --muted:#6f6c64;
+  --line:#d9d1c4;
+  --accent:#c95d3b;
+  --olive:#66705a;
+  --shadow:0 18px 50px rgba(54,42,27,.10);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 5%, rgba(201,93,59,.08), transparent 24rem),
+    radial-gradient(circle at 88% 16%, rgba(102,112,90,.10), transparent 25rem),
+    var(--bg);
+}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+.container{width:min(1180px,calc(100% - 38px));margin:auto}
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(246,241,232,.83);
+  border-bottom:1px solid rgba(217,209,196,.8)
+}
+.nav{
+  min-height:76px;display:flex;align-items:center;gap:28px
+}
+.brand{font-weight:900;letter-spacing:.08em;font-size:15px;margin-right:auto}
+.brand span{display:block;font-family:Georgia,serif;font-weight:500;font-style:italic;font-size:12px;letter-spacing:.04em;color:var(--muted);margin-top:3px}
+.navlinks{display:flex;gap:24px;color:#484640;font-size:14px}
+.navlinks a:hover{color:var(--accent)}
+.menuBtn{display:none;border:0;background:none;font-size:24px}
+.hero{
+  min-height:660px;padding:76px 0 54px;display:grid;align-items:center
+}
+.heroGrid{display:grid;grid-template-columns:1.04fr .96fr;gap:68px;align-items:center}
+.kicker{
+  display:inline-flex;gap:9px;align-items:center;
+  text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:800;color:var(--accent)
+}
+.kicker:before{content:"";width:36px;height:1px;background:var(--accent)}
+h1{
+  font-family:Georgia, "Times New Roman", serif;
+  font-size:clamp(58px,8vw,112px);line-height:.88;
+  letter-spacing:-.055em;margin:20px 0 26px;font-weight:500
+}
+.hero p{font-size:20px;line-height:1.65;color:#5d5951;max-width:610px}
+.searchbar{
+  margin-top:34px;background:var(--paper);padding:9px;border-radius:999px;
+  display:flex;gap:10px;box-shadow:var(--shadow);border:1px solid rgba(217,209,196,.7);
+  max-width:640px
+}
+.searchbar input{flex:1;border:0;outline:0;background:transparent;padding:0 18px}
+.btn{
+  border:0;border-radius:999px;padding:15px 22px;font-weight:800;cursor:pointer;transition:.2s;
+  background:var(--ink);color:white
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.accent{background:var(--accent)}
+.heroVisual{position:relative;min-height:530px}
+.poster{
+  position:absolute;inset:0 38px 24px 0;border-radius:42px;overflow:hidden;box-shadow:var(--shadow);
+  background:
+    linear-gradient(145deg,rgba(21,22,20,.02),rgba(21,22,20,.22)),
+    linear-gradient(160deg,#dbc9ad 0 34%,#9eb0a6 34% 52%,#60746e 52% 63%,#dca274 63% 100%);
+}
+.poster:before,.poster:after{content:"";position:absolute;border-radius:999px;opacity:.9}
+.poster:before{width:430px;height:430px;background:#f0d8b1;right:-90px;top:-160px}
+.poster:after{width:420px;height:110px;background:#486765;left:-60px;bottom:90px;transform:rotate(-8deg)}
+.citySilhouette{
+  position:absolute;left:9%;right:8%;bottom:20%;height:165px;z-index:3;
+  background:
+   linear-gradient(to top,rgba(43,47,42,.88),rgba(43,47,42,.88)) 0 80%/13% 50% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.9),rgba(43,47,42,.9)) 14% 70%/12% 60% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.88),rgba(43,47,42,.88)) 27% 84%/16% 46% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.9),rgba(43,47,42,.9)) 44% 55%/10% 75% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.86),rgba(43,47,42,.86)) 55% 73%/18% 57% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.9),rgba(43,47,42,.9)) 74% 64%/11% 66% no-repeat,
+   linear-gradient(to top,rgba(43,47,42,.87),rgba(43,47,42,.87)) 86% 81%/14% 49% no-repeat;
+  filter:drop-shadow(0 16px 18px rgba(0,0,0,.18))
+}
+.stamp{
+  position:absolute;right:0;bottom:0;width:160px;height:160px;border-radius:50%;
+  background:var(--paper);display:grid;place-items:center;box-shadow:var(--shadow);z-index:6;
+  text-align:center;font-family:Georgia,serif;font-style:italic;font-size:17px;transform:rotate(8deg)
+}
+.stamp strong{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:38px;color:var(--accent)}
+section{padding:92px 0}
+.sectionHead{display:flex;align-items:end;gap:30px;margin-bottom:38px}
+.sectionHead h2{
+  margin:0;font-family:Georgia,serif;font-size:clamp(38px,5vw,66px);font-weight:500;letter-spacing:-.04em
+}
+.sectionHead p{margin-left:auto;max-width:420px;color:var(--muted);line-height:1.6}
+.cities{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cityCard{
+  position:relative;min-height:330px;border-radius:28px;overflow:hidden;padding:22px;
+  color:white;cursor:pointer;box-shadow:0 10px 28px rgba(41,35,28,.08);transition:.28s
+}
+.cityCard:hover{transform:translateY(-6px)}
+.cityCard:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(17,18,16,.75))}
+.cityCard > *{position:relative;z-index:2}
+.cityCard .num{font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.cityCard h3{position:absolute;left:22px;bottom:35px;font-family:Georgia,serif;font-size:34px;margin:0}
+.cityCard small{position:absolute;left:22px;bottom:18px}
+.cityCard:nth-child(1){background:linear-gradient(155deg,#c97f62,#f2c88f 43%,#71908d 44%,#405e5c)}
+.cityCard:nth-child(2){background:linear-gradient(155deg,#ba9266,#e1c3a0 45%,#7f6f62 46%,#493e36)}
+.cityCard:nth-child(3){background:linear-gradient(155deg,#9f7d62,#d0ae83 46%,#637f8b 47%,#405862)}
+.cityCard:nth-child(4){background:linear-gradient(155deg,#7b9ca6,#b4c7c8 42%,#b58b68 43%,#6f4d39)}
+.cityCard:nth-child(5){background:linear-gradient(155deg,#c76b4f,#efa879 45%,#79978b 46%,#496258)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.pill{border:1px solid var(--line);background:transparent;padding:10px 15px;border-radius:999px;cursor:pointer;color:#59564f}
+.pill.active,.pill:hover{background:var(--ink);color:white;border-color:var(--ink)}
+.routeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.route{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  display:grid;grid-template-columns:180px 1fr;min-height:220px;transition:.25s;cursor:pointer
+}
+.route:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.routeArt{position:relative;min-height:220px}
+.route:nth-child(1) .routeArt{background:linear-gradient(140deg,#df8f67,#e9c28f 47%,#5f7f7c 48%)}
+.route:nth-child(2) .routeArt{background:linear-gradient(140deg,#c2a77e,#ead6b8 42%,#8b765d 43%,#4d453e)}
+.route:nth-child(3) .routeArt{background:linear-gradient(140deg,#a4adb0,#d9c6a9 52%,#435b63 53%)}
+.route:nth-child(4) .routeArt{background:linear-gradient(140deg,#c47357,#e3a977 50%,#556f59 51%)}
+.route:nth-child(5) .routeArt{background:linear-gradient(140deg,#d3b789,#f0d9b5 47%,#73808a 48%)}
+.route:nth-child(6) .routeArt{background:linear-gradient(140deg,#948170,#cdb89a 48%,#5d6f66 49%)}
+.routeBody{padding:25px}
+.routeTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.route h3{font-family:Georgia,serif;font-size:29px;font-weight:500;margin:0 0 11px}
+.route p{color:var(--muted);line-height:1.55;margin:0 0 16px}
+.meta{display:flex;gap:13px;flex-wrap:wrap;font-size:13px}
+.meta span{padding:7px 10px;background:#f1ede5;border-radius:10px}
+.statement{
+  background:var(--ink);color:white;border-radius:42px;padding:72px;
+  display:grid;grid-template-columns:1fr .7fr;gap:60px;align-items:center;overflow:hidden;position:relative
+}
+.statement:before{content:"10";position:absolute;right:-20px;top:-80px;font-family:Georgia,serif;font-size:320px;color:rgba(255,255,255,.045)}
+.statement h2{font-family:Georgia,serif;font-size:60px;font-weight:500;margin:0 0 20px;line-height:1}
+.statement p{font-size:18px;color:#c8c4bd;line-height:1.7}
+.quote{font-family:Georgia,serif;font-size:30px;line-height:1.35;font-style:italic;position:relative;z-index:2}
+.aboutGrid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px}
+.aboutCard{
+  min-height:430px;border-radius:36px;background:linear-gradient(145deg,#b79575,#e7c8a4 48%,#6a817b 49%);
+  box-shadow:var(--shadow);position:relative;overflow:hidden
+}
+.aboutCard:after{content:"LIFE IS TRAVEL";position:absolute;left:24px;bottom:24px;color:white;font-weight:900;letter-spacing:.14em;font-size:12px}
+.aboutText h2{font-family:Georgia,serif;font-size:58px;font-weight:500;margin:0 0 20px}
+.aboutText p{font-size:18px;line-height:1.8;color:#5b5750}
+.footer{padding:56px 0 32px;border-top:1px solid var(--line);margin-top:50px}
+.footerGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px}
+.footer h4{margin:0 0 12px}
+.footer p,.footer a{color:var(--muted);line-height:1.8;font-size:14px}
+.copyright{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);color:#878177;font-size:13px}
+.modal{
+  position:fixed;inset:0;z-index:100;background:rgba(20,19,17,.72);display:none;padding:24px;overflow:auto
+}
+.modal.open{display:block}
+.guide{
+  background:var(--bg);max-width:960px;margin:0 auto;border-radius:32px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)
+}
+.guideHero{
+  min-height:380px;padding:35px;color:white;position:relative;
+  background:linear-gradient(145deg,#d17d5b,#ebc08e 48%,#52716e 49%,#304f4d)
+}
+.close{
+  position:absolute;right:24px;top:22px;border:0;border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;
+  background:rgba(255,255,255,.92)
+}
+.guideHero h2{font-family:Georgia,serif;font-size:60px;font-weight:500;max-width:650px;margin:150px 0 12px;line-height:.98}
+.guideHero p{font-size:18px;max-width:600px}
+.guideBody{padding:40px}
+.guideMeta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:35px}
+.stop{
+  display:grid;grid-template-columns:60px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)
+}
+.stopNum{font-family:Georgia,serif;font-size:34px;color:var(--accent)}
+.stop h3{margin:0 0 8px;font-family:Georgia,serif;font-size:27px}
+.stop p{margin:0;color:var(--muted);line-height:1.7}
+.map{
+  height:260px;border-radius:24px;background:
+    linear-gradient(90deg,transparent 49%,rgba(70,72,66,.08) 50%,transparent 51%),
+    linear-gradient(transparent 49%,rgba(70,72,66,.08) 50%,transparent 51%),
+    #e9e4da;background-size:48px 48px;position:relative;overflow:hidden;margin:22px 0 34px
+}
+.path{
+  position:absolute;left:16%;top:15%;width:68%;height:60%;border:4px dashed var(--accent);border-radius:48% 43% 57% 42%;transform:rotate(-8deg)
+}
+.pin{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--ink);border:5px solid white;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.pin.one{left:18%;top:22%}.pin.two{left:49%;top:58%}.pin.three{right:16%;top:29%}
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;z-index:200;
+  background:var(--ink);color:#fff;padding:13px 20px;border-radius:999px;transition:.25s;pointer-events:none
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:980px){
+  .heroGrid,.statement,.aboutGrid{grid-template-columns:1fr}
+  .heroVisual{min-height:430px}
+  .cities{grid-template-columns:repeat(2,1fr)}
+  .cityCard:last-child{grid-column:span 2}
+  .routeGrid{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .navlinks{display:none;position:absolute;left:0;right:0;top:76px;background:var(--paper);padding:20px 28px;flex-direction:column;border-bottom:1px solid var(--line)}
+  .navlinks.open{display:flex}.menuBtn{display:block}
+  .hero{padding-top:44px}.hero p{font-size:17px}.searchbar{border-radius:24px;align-items:stretch}.searchbar input{min-width:0}
+  .cities{grid-template-columns:1fr}.cityCard:last-child{grid-column:auto}
+  .route{grid-template-columns:110px 1fr}.routeArt{min-height:100%}
+  .sectionHead{align-items:flex-start;flex-direction:column}.sectionHead p{margin-left:0}
+  .statement{padding:42px 28px}.statement h2{font-size:44px}.quote{font-size:24px}
+  .footerGrid{grid-template-columns:1fr}
+  .guideHero h2{font-size:42px}.guideBody{padding:25px}.stop{grid-template-columns:44px 1fr}
+}
+</style>
 </head>
 <body>
-  <header id="home" class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <h1>Life is Travel</h1>
-      <p>Откройте для себя мир — путешествия, маршруты, советы и невероятные истории.</p>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">LIFE IS TRAVEL<span>пойдём гулять</span></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="#cities">Города</a>
+      <a href="#walks">Прогулки</a>
+      <a href="#idea">10 идей</a>
+      <a href="#about">О проекте</a>
+    </nav>
+    <button class="menuBtn" id="menuBtn" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container heroGrid">
+    <div>
+      <div class="kicker">Авторские маршруты по городам</div>
+      <h1>Пойдём<br>гулять.</h1>
+      <p>Города лучше всего узнавать пешком. Выбирай одну из 10 идей, открывай маршрут и проходи город в своём темпе — без экскурсионной группы и лишней спешки.</p>
+      <div class="searchbar">
+        <input id="citySearch" placeholder="Например: Тель-Авив, Рим, Лион…" />
+        <button class="btn accent" onclick="findCity()">Найти прогулку</button>
+      </div>
     </div>
-  </header>
+    <div class="heroVisual">
+      <div class="poster"><div class="citySilhouette"></div></div>
+      <div class="stamp"><div><strong>10</strong>идей для<br>прогулок</div></div>
+    </div>
+  </div>
+</section>
 
-  <nav class="site-nav">
-    <ul>
-      <li><a href="#home">🏠 Главная</a></li>
-      <li><a href="#routes">🧭 Маршруты</a></li>
-      <li><a href="#regions">🗺️ Мир по разделам</a></li>
-      <li><a href="#blog">✍️ Блог путешествий</a></li>
-      <li><a href="#gallery">📷 Галерея</a></li>
-      <li><a href="#tips">📚 Полезное</a></li>
-      <li><a href="#daily">📆 Маршруты по дням</a></li>
-    </ul>
-  </nav>
+<section id="cities">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Выбирай город</h2>
+      <p>Каждый город — это 10 разных способов его почувствовать: классика, архитектура, рынки, закаты, тихие улицы и маршруты без туристической суеты.</p>
+    </div>
+    <div class="cities">
+      <article class="cityCard" onclick="selectCity('Тель-Авив')"><span class="num">01 / Израиль</span><h3>Тель-Авив</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="selectCity('Рим')"><span class="num">02 / Италия</span><h3>Рим</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="selectCity('Лион')"><span class="num">03 / Франция</span><h3>Лион</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="selectCity('Валенсия')"><span class="num">04 / Испания</span><h3>Валенсия</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="selectCity('Лондон')"><span class="num">05 / Англия</span><h3>Лондон</h3><small>10 прогулок →</small></article>
+    </div>
+  </div>
+</section>
 
-  <main class="container">
-    <section id="routes" class="section">
-      <h2>Популярные маршруты</h2>
-      <div class="grid">
-        <article class="post">
-          <img alt="Lisbon" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" />
-          <h3>3 дня в Лиссабоне</h3>
-          <p>Лиссабон — это не только город с уникальной атмосферой, но и место, где можно почувствовать себя частью европейской истории...</p>
-          <a class="post-link" href="#">Читать статью</a>
-        </article>
+<section id="walks">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Прогулки</h2>
+      <p id="cityLabel">Подборка маршрутов Life is Travel. Нажми на карточку — откроется пошаговый мини‑гид.</p>
+    </div>
+    <div class="filters">
+      <button class="pill active" data-filter="all">Все</button>
+      <button class="pill" data-filter="first">Первое знакомство</button>
+      <button class="pill" data-filter="architecture">Архитектура</button>
+      <button class="pill" data-filter="sunset">Закат</button>
+      <button class="pill" data-filter="quiet">Без туристов</button>
+    </div>
+    <div class="routeGrid" id="routeGrid">
+      <article class="route" data-cat="first" onclick="openGuide(0)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>01 / Мой выбор</span><span>★★★★★</span></div>
+          <h3>От старого города к морю</h3>
+          <p>Для первого знакомства: старые улицы, рынок, маленькие дворики и финал у воды.</p>
+          <div class="meta"><span>4,8 км</span><span>2 ч 15 мин</span><span>Легко</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="architecture" onclick="openGuide(1)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>02 / Архитектура</span><span>8 точек</span></div>
+          <h3>Город линий и фасадов</h3>
+          <p>Прогулка для тех, кто замечает балконы, двери, вывески и геометрию улиц.</p>
+          <div class="meta"><span>3,6 км</span><span>1 ч 40 мин</span><span>Легко</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="sunset" onclick="openGuide(2)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>03 / Вечер</span><span>Лучше после 17:00</span></div>
+          <h3>Город после заката</h3>
+          <p>Тёплый свет, набережная, шумные площади и спокойный финал с красивым видом.</p>
+          <div class="meta"><span>5,1 км</span><span>2 ч 30 мин</span><span>Средне</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="quiet" onclick="openGuide(3)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>04 / Тихий город</span><span>7 точек</span></div>
+          <h3>Улицы, куда редко сворачивают</h3>
+          <p>Маршрут без обязательных достопримечательностей — только детали, дворы и городская жизнь.</p>
+          <div class="meta"><span>4,2 км</span><span>2 ч</span><span>Легко</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="first" onclick="openGuide(4)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>05 / Кофе + город</span><span>6 точек</span></div>
+          <h3>Утро без спешки</h3>
+          <p>Кофе, рынок, тихая площадь и короткая прогулка, с которой приятно начинать день.</p>
+          <div class="meta"><span>2,7 км</span><span>1 ч 20 мин</span><span>Очень легко</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="quiet" onclick="openGuide(5)">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>06 / Свободный маршрут</span><span>Медленный темп</span></div>
+          <h3>Прогулка без цели</h3>
+          <p>Маршрут, где важнее не точки, а настроение: сворачивать, останавливаться и смотреть вокруг.</p>
+          <div class="meta"><span>3,9 км</span><span>Сколько захочешь</span><span>Легко</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <article class="post">
-          <img alt="Iceland" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" />
-          <h3>Неделя в Исландии</h3>
-          <p>Исландия — это место, где природа встречает самые необычные и мощные элементы земли, воды и воздуха. Путеводитель по Исландии...</p>
-          <a class="post-link" href="#">Читать статью</a>
-        </article>
-
-        <article class="post">
-          <img alt="Выходные в Париже" src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60b?auto=format&fit=crop&w=1200&q=80" />
-          <h3>Выходные в Париже</h3>
-          <p>Париж очаровывает своей архитектурой, музеями и вкусной кухней. Это идеальное место для романтического отдыха на уикенд.</p>
-          <a class="post-link" href="#">Читать статью</a>
-        </article>
-
-        <article class="post">
-          <img alt="5 дней в Токио" src="https://images.unsplash.com/photo-1549887534-4458a7718c88?auto=format&fit=crop&w=1200&q=80" />
-          <h3>5 дней в Токио</h3>
-          <p>Токио — мегаполис будущего, где древние традиции соседствуют с ультрасовременными технологиями. Откройте для себя Японию!</p>
-          <a class="post-link" href="#">Читать статью</a>
-        </article>
-
-        <article class="post">
-          <img alt="Неделя в Марракеше" src="https://images.unsplash.com/photo-1586810724476-c294fb7ac01c?auto=format&fit=crop&w=1200&q=80" />
-          <h3>Неделя в Марракеше</h3>
-          <p>Марракеш погружает в атмосферу восточной сказки с его рынками, дворцами и ароматами специй. Незабываемое путешествие в сердце Марокко.</p>
-          <a class="post-link" href="#">Читать статью</a>
-        </article>
+<section id="idea">
+  <div class="container">
+    <div class="statement">
+      <div>
+        <div class="kicker" style="color:#e9a184">Фирменный формат</div>
+        <h2>10 идей для прогулок в каждом городе.</h2>
+        <p>Не огромный каталог из сотен случайных мест. Только десять понятных маршрутов, которые легко выбрать по настроению и пройти самому.</p>
       </div>
-    </section>
+      <div class="quote">«Не просто посмотреть город. Погулять по нему так, чтобы захотелось вернуться.»</div>
+    </div>
+  </div>
+</section>
 
-    <section id="regions" class="section">
-      <h2>🗺️ Мир по разделам</h2>
-      <div class="grid">
-        <article class="post">
-          <h3>Европа</h3>
-          <p>Франция, Германия, Италия — маршруты, особенности и советы.</p>
-        </article>
-        <article class="post">
-          <h3>Азия</h3>
-          <p>Япония, Таиланд, Вьетнам — культура, кухня и города.</p>
-        </article>
-        <article class="post">
-          <h3>Америка</h3>
-          <p>США, Канада, Мексика — природа, дороги и города.</p>
-        </article>
-      </div>
-    </section>
+<section id="about">
+  <div class="container aboutGrid">
+    <div class="aboutCard"></div>
+    <div class="aboutText">
+      <div class="kicker">Life is Travel</div>
+      <h2>Я собираю города по кусочкам.</h2>
+      <p>Этот сайт — коллекция моих прогулок, маршрутов и любимых городских деталей. Здесь нет гонки по достопримечательностям. Я выбираю улицы, точки и повороты, которые складываются в хороший день в городе.</p>
+      <p>Открывай маршрут на телефоне, начинай с первой точки и иди в своём темпе. Где-то я подскажу, куда свернуть. Где-то — где выпить кофе. А иногда — где просто остановиться на десять минут.</p>
+      <button class="btn" onclick="document.getElementById('walks').scrollIntoView()">Выбрать прогулку</button>
+    </div>
+  </div>
+</section>
+</main>
 
-    <section id="blog" class="section">
-      <h2>✍️ Блог путешествий</h2>
-      <div class="grid">
-        <article class="post">
-          <h3>Как я влюбился в путешествия</h3>
-          <p>Моя первая поездка была в одиночку. Я отправился в Прагу с рюкзаком за плечами...</p>
-        </article>
-        <article class="post">
-          <h3>Как мы потерялись в Альпах</h3>
-          <p>Это должно было быть короткое восхождение, но всё пошло не по плану...</p>
-        </article>
-      </div>
-    </section>
+<footer class="footer">
+  <div class="container">
+    <div class="footerGrid">
+      <div><div class="brand">LIFE IS TRAVEL<span>пойдём гулять</span></div><p>Авторские городские прогулки и маршруты, которые можно пройти самому.</p></div>
+      <div><h4>Разделы</h4><a href="#cities">Города</a><br><a href="#walks">Прогулки</a><br><a href="#idea">10 идей</a><br><a href="#about">О проекте</a></div>
+      <div><h4>Следующий маршрут</h4><p>Добавь Telegram / Instagram / YouTube или ссылку на канал Life is Travel.</p></div>
+    </div>
+    <div class="copyright">© 2026 Life is Travel. Концепт сайта.</div>
+  </div>
+</footer>
 
-    <section id="gallery" class="section">
-      <h2>📷 Галерея</h2>
-      <div class="grid">
-        <article class="post">
-          <img alt="Альпы" src="https://images.unsplash.com/photo-1504198266285-165a6e164fac?auto=format&fit=crop&w=1200&q=80" />
-          <p>Горные виды в Альпах</p>
-        </article>
-        <article class="post">
-          <img alt="Пляж" src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80" />
-          <p>Пляжи Тихого океана</p>
-        </article>
-      </div>
-    </section>
+<div class="modal" id="modal">
+  <div class="guide">
+    <div class="guideHero">
+      <button class="close" onclick="closeGuide()">×</button>
+      <div class="kicker" style="color:white">Авторский гид</div>
+      <h2 id="guideTitle">От старого города к морю</h2>
+      <p id="guideDesc">Моя любимая прогулка для первого знакомства с городом.</p>
+    </div>
+    <div class="guideBody">
+      <div class="guideMeta"><span class="pill active">4,8 км</span><span class="pill">2 ч 15 мин</span><span class="pill">8 остановок</span></div>
+      <h3 style="font-family:Georgia,serif;font-size:32px;margin:0">Карта прогулки</h3>
+      <div class="map"><div class="path"></div><i class="pin one"></i><i class="pin two"></i><i class="pin three"></i></div>
+      <div id="stops"></div>
+      <button class="btn accent" onclick="saveRoute()">♡ Сохранить маршрут</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast">Маршрут сохранён</div>
 
-    <section id="tips" class="section">
-      <h2>📚 Полезное</h2>
-      <div class="grid">
-        <article class="post">
-          <h3>Проверьте документы</h3>
-          <p>Убедитесь, что визы, страховки и билеты в порядке заранее.</p>
-        </article>
-        <article class="post">
-          <h3>Оффлайн-карты</h3>
-          <p>Скачайте карты, чтобы не зависеть от интернета в дороге.</p>
-        </article>
-        <article class="post">
-          <h3>Безопасность</h3>
-          <p>Имейте копии документов и храните их отдельно от оригиналов.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="daily" class="section">
-      <h2>📆 Маршруты по дням</h2>
-      <div class="grid">
-        <article class="post">
-          <h3>День 1</h3>
-          <p>Заселение, прогулка по центру, знакомство с культурой.</p>
-        </article>
-        <article class="post">
-          <h3>День 2</h3>
-          <p>Экскурсии, музеи, рестораны и местные блюда.</p>
-        </article>
-        <article class="post">
-          <h3>День 3</h3>
-          <p>Свободный день или поездка в пригород.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2025 Life is Travel. Все права защищены.</p>
-    <p>
-      <a href="mailto:travel@lifeistravel.ru">Напишите нам</a>
-      <span class="footer-sep">|</span>
-      <a href="https://t.me/yourchannel" target="_blank" rel="noopener noreferrer">Связаться в Telegram</a>
-    </p>
-  </footer>
+<script>
+const guides = [
+ {title:"От старого города к морю",desc:"Моя любимая прогулка для первого знакомства с городом.",stops:[
+  ["Начинаем в старом городе","Не спеши. Первые десять минут просто осмотрись и поймай ритм улиц."],
+  ["Рынок и маленькие лавки","Здесь лучше идти медленно: запахи, вывески и разговоры важнее списка покупок."],
+  ["Тихий переулок","Сверни с главной улицы. Именно здесь город становится более личным."],
+  ["Кофейная остановка","Хорошее место сделать паузу и посмотреть, как живёт район."],
+  ["Финал у моря","Последнюю часть маршрута оставь на золотой час. Здесь не нужно ничего делать — просто посиди у воды."]
+ ]},
+ {title:"Город линий и фасадов",desc:"Маршрут для тех, кто любит архитектуру и городские детали.",stops:[
+  ["Главный фасад","Посмотри на пропорции здания, окна и ритм балконов."],["Улица деталей","Обрати внимание на двери, таблички и старую типографику."],["Современный квартал","Сравни старый город с новыми формами и материалами."],["Финальная площадь","Лучшее место, чтобы увидеть, как разные эпохи встретились в одном кадре."]
+ ]},
+ {title:"Город после заката",desc:"Вечерняя прогулка с красивым светом и спокойным финалом.",stops:[
+  ["Старт перед закатом","Начни за 45–60 минут до захода солнца."],["Смотровая точка","Остановись здесь на несколько минут — дальше свет быстро меняется."],["Вечерняя улица","После темноты маршрут становится шумнее и живее."],["Последний вид","Финал без спешки: напиток, вид и немного времени без маршрута."]
+ ]},
+ {title:"Улицы, куда редко сворачивают",desc:"Тихий маршрут вдали от самых очевидных туристических улиц.",stops:[
+  ["Незаметный поворот","Главное правило маршрута — чаще смотреть по сторонам, чем в карту."],["Жилой двор","Здесь интересна не достопримечательность, а обычная жизнь города."],["Старая мастерская","Такие места быстро исчезают — задержись и рассмотри детали."],["Тихая площадь","Хорошая точка, чтобы закончить маршрут без толпы."]
+ ]},
+ {title:"Утро без спешки",desc:"Короткая прогулка с кофе, рынком и медленным началом дня.",stops:[
+  ["Первый кофе","Начни не с достопримечательности, а с нормального завтрака."],["Утренний рынок","Утром здесь больше местных и меньше туристов."],["Площадь","Сядь на 10 минут и ничего не планируй."],["Набережная","Заканчивай прогулку там, где город раскрывается шире."]
+ ]},
+ {title:"Прогулка без цели",desc:"Маршрут, в котором можно свободно менять направление.",stops:[
+  ["Точка старта","Выбери направление интуитивно."],["Первый поворот","Сверни туда, куда обычно не повёл бы путеводитель."],["Случайная остановка","Если место понравилось — оставайся дольше. Время здесь не главное."],["Финиш там, где захочется","У этой прогулки нет обязательного конца."]
+ ]}
+];
+function openGuide(i){
+ const g=guides[i];
+ document.getElementById('guideTitle').textContent=g.title;
+ document.getElementById('guideDesc').textContent=g.desc;
+ document.getElementById('stops').innerHTML=g.stops.map((s,n)=>`<div class="stop"><div class="stopNum">${String(n+1).padStart(2,'0')}</div><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
+ document.getElementById('modal').classList.add('open');
+ document.body.style.overflow='hidden';
+}
+function closeGuide(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeGuide()})
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuide()})
+document.querySelectorAll('.pill[data-filter]').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  document.querySelectorAll('.pill[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.route').forEach(r=>r.style.display=(f==='all'||r.dataset.cat===f)?'grid':'none');
+ })
+})
+function selectCity(name){
+ document.getElementById('cityLabel').textContent=`10 идей для прогулок: ${name}. Карточки ниже — пример структуры твоих будущих маршрутов.`;
+ document.getElementById('walks').scrollIntoView({behavior:'smooth'});
+ showToast(`Открыты прогулки: ${name}`);
+}
+function findCity(){
+ const q=document.getElementById('citySearch').value.trim();
+ if(!q){showToast('Введите название города');return}
+ selectCity(q);
+}
+function saveRoute(){
+ const title=document.getElementById('guideTitle').textContent;
+ const saved=JSON.parse(localStorage.getItem('lit_saved')||'[]');
+ if(!saved.includes(title)) saved.push(title);
+ localStorage.setItem('lit_saved',JSON.stringify(saved));
+ showToast('Маршрут сохранён в браузере');
+}
+function showToast(text){
+ const t=document.getElementById('toast');t.textContent=text;t.classList.add('show');
+ setTimeout(()=>t.classList.remove('show'),1800);
+}
+document.getElementById('menuBtn').onclick=()=>document.getElementById('navlinks').classList.toggle('open');
+</script>
 </body>
 </html>
