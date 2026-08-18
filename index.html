@@ -106,7 +106,7 @@ section{padding:92px 0}
   margin:0;font-family:Georgia,serif;font-size:clamp(38px,5vw,66px);font-weight:500;letter-spacing:-.04em
 }
 .sectionHead p{margin-left:auto;max-width:420px;color:var(--muted);line-height:1.6}
-.cities{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cities{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .cityCard{
   position:relative;min-height:330px;border-radius:28px;overflow:hidden;padding:22px;
   color:white;cursor:pointer;box-shadow:0 10px 28px rgba(41,35,28,.08);transition:.28s
@@ -269,8 +269,10 @@ section{padding:92px 0}
       <article class="cityCard" onclick="selectCity('Тель-Авив')"><span class="num">01 / Израиль</span><h3>Тель-Авив</h3><small>10 прогулок →</small></article>
       <article class="cityCard" onclick="selectCity('Рим')"><span class="num">02 / Италия</span><h3>Рим</h3><small>10 прогулок →</small></article>
       <article class="cityCard" onclick="selectCity('Лион')"><span class="num">03 / Франция</span><h3>Лион</h3><small>10 прогулок →</small></article>
-      <article class="cityCard" onclick="selectCity('Валенсия')"><span class="num">04 / Испания</span><h3>Валенсия</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="location.href='valencia.html'"><span class="num">04 / Испания</span><h3>Валенсия</h3><small>Валенсия за 1 день →</small></article>
       <article class="cityCard" onclick="selectCity('Лондон')"><span class="num">05 / Англия</span><h3>Лондон</h3><small>10 прогулок →</small></article>
+      <article class="cityCard" onclick="location.href='bilbao.html'"><span class="num">06 / Испания</span><h3>Бильбао</h3><small>Бильбао за 1 день →</small></article>
+      <article class="cityCard" onclick="location.href='seville.html'"><span class="num">07 / Испания</span><h3>Севилья</h3><small>Севилья за 1 день →</small></article>
     </div>
   </div>
 </section>
@@ -335,6 +337,30 @@ section{padding:92px 0}
           <h3>Прогулка без цели</h3>
           <p>Маршрут, где важнее не точки, а настроение: сворачивать, останавливаться и смотреть вокруг.</p>
           <div class="meta"><span>3,9 км</span><span>Сколько захочешь</span><span>Легко</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="first" onclick="location.href='bilbao.html'">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>07 / Бильбао</span><span>Маршрут на день</span></div>
+          <h3>Бильбао за 1 день</h3>
+          <p>Гуггенхайм, Нервьон, Zubizuri, Casco Viejo, pintxos и панорама с Artxanda.</p>
+          <div class="meta"><span>7–8 часов</span><span>Пешком + фуникулёр</span><span>Испания</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="first" onclick="location.href='valencia.html'">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>08 / Валенсия</span><span>Маршрут на день</span></div>
+          <h3>Валенсия за 1 день</h3>
+          <p>Город искусств и наук, Сады Турии, старый центр, рынок и финал у моря.</p>
+          <div class="meta"><span>6–8 часов</span><span>Пешком + транспорт</span><span>Испания</span></div>
+        </div>
+      </article>
+      <article class="route" data-cat="first" onclick="location.href='seville.html'">
+        <div class="routeArt"></div><div class="routeBody">
+          <div class="routeTop"><span>09 / Севилья</span><span>Маршрут на день</span></div>
+          <h3>Севилья за 1 день</h3>
+          <p>Plaza de España, María Luisa, Alcázar, Giralda, Santa Cruz, Setas и вечер в Triana.</p>
+          <div class="meta"><span>8–10 часов</span><span>Почти всё пешком</span><span>Испания</span></div>
         </div>
       </article>
     </div>

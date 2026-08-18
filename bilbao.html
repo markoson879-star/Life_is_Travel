@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Бильбао за 1 день — Life is Travel</title>
+<meta name="description" content="Авторский пеший маршрут по Бильбао на один день: Гуггенхайм, Нервьон, Zubizuri, Casco Viejo, Mercado de la Ribera, собор Святого Иакова и Artxanda." />
+<style>
+:root{
+  --bg:#f6f1e8;
+  --paper:#fffdf9;
+  --ink:#20201d;
+  --muted:#6f6c64;
+  --line:#d9d1c4;
+  --accent:#c95d3b;
+  --olive:#66705a;
+  --shadow:0 18px 50px rgba(54,42,27,.10);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(201,93,59,.08),transparent 24rem),
+    radial-gradient(circle at 88% 16%,rgba(102,112,90,.10),transparent 25rem),
+    var(--bg);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,calc(100% - 38px));margin:auto}
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(246,241,232,.86);
+  border-bottom:1px solid rgba(217,209,196,.8)
+}
+.nav{min-height:76px;display:flex;align-items:center;gap:26px}
+.brand{font-weight:900;letter-spacing:.08em;font-size:15px;margin-right:auto}
+.brand span{display:block;font-family:Georgia,serif;font-weight:500;font-style:italic;font-size:12px;letter-spacing:.04em;color:var(--muted);margin-top:3px}
+.navlinks{display:flex;gap:22px;color:#484640;font-size:14px}
+.navlinks a:hover{color:var(--accent)}
+.hero{padding:70px 0 54px}
+.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:58px;align-items:center}
+.kicker{display:inline-flex;gap:9px;align-items:center;text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:800;color:var(--accent)}
+.kicker:before{content:"";width:36px;height:1px;background:var(--accent)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,7vw,96px);line-height:.93;letter-spacing:-.05em;margin:18px 0 22px;font-weight:500}
+.lead{font-size:20px;line-height:1.7;color:#5d5951;max-width:640px}
+.heroCard{
+  min-height:480px;border-radius:40px;overflow:hidden;box-shadow:var(--shadow);position:relative;
+  background:
+    linear-gradient(180deg,rgba(24,25,23,.04),rgba(24,25,23,.22)),
+    linear-gradient(145deg,#d4a47e 0 33%,#bbc7c1 33% 52%,#6d8583 52% 66%,#d98760 66% 100%);
+}
+.heroCard:before{
+  content:"BILBAO";position:absolute;right:-18px;top:42px;font-family:Georgia,serif;
+  font-size:108px;color:rgba(255,255,255,.18);transform:rotate(90deg);transform-origin:center;
+}
+.heroCard .river{position:absolute;left:-8%;right:-8%;bottom:88px;height:120px;background:#4f6c6b;transform:rotate(-8deg)}
+.heroCard .museum{position:absolute;left:12%;bottom:118px;width:48%;height:190px;background:#ead5bd;clip-path:polygon(3% 73%,18% 33%,34% 57%,52% 18%,72% 50%,94% 9%,99% 88%,61% 100%,26% 92%);filter:drop-shadow(0 15px 18px rgba(0,0,0,.14))}
+.heroCard .badge{position:absolute;right:28px;bottom:25px;background:var(--paper);border-radius:50%;width:150px;height:150px;display:grid;place-items:center;text-align:center;box-shadow:var(--shadow);font-family:Georgia,serif;font-style:italic;transform:rotate(7deg)}
+.heroCard .badge strong{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:34px;color:var(--accent)}
+.metaBar{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.metaBar span{padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:999px;color:#59564f;font-size:14px}
+section{padding:74px 0}
+.sectionHead{display:flex;gap:30px;align-items:end;margin-bottom:32px}
+.sectionHead h2{font-family:Georgia,serif;font-size:clamp(38px,5vw,62px);font-weight:500;letter-spacing:-.04em;margin:0}
+.sectionHead p{margin-left:auto;max-width:460px;line-height:1.65;color:var(--muted)}
+.routeLine{
+  background:var(--paper);border:1px solid var(--line);border-radius:32px;padding:26px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;box-shadow:0 10px 28px rgba(41,35,28,.05)
+}
+.routeLine span{padding:10px 13px;background:#f1ede5;border-radius:999px;font-size:14px}
+.routeLine b{color:var(--accent)}
+.stop{
+  display:grid;grid-template-columns:92px 1fr;gap:28px;padding:38px 0;border-top:1px solid var(--line)
+}
+.stop:first-of-type{border-top:0}
+.stopNum{font-family:Georgia,serif;font-size:48px;color:var(--accent);line-height:1}
+.stopBody h3{font-family:Georgia,serif;font-size:36px;font-weight:500;margin:0 0 8px}
+.stopBody .sub{font-size:18px;color:#5d5951;margin:0 0 18px}
+.stopBody p{line-height:1.8;color:#5b5750;font-size:17px}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.tip{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px}
+.tip b{display:block;margin-bottom:6px}
+.callout{
+  background:var(--ink);color:white;border-radius:34px;padding:44px;margin:24px 0 6px;position:relative;overflow:hidden
+}
+.callout:after{content:"LIFE IS TRAVEL";position:absolute;right:-20px;bottom:-14px;font-weight:900;font-size:68px;letter-spacing:.05em;color:rgba(255,255,255,.045)}
+.callout p{font-family:Georgia,serif;font-size:28px;line-height:1.4;margin:0;position:relative;z-index:2}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.timeCard{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:20px}
+.timeCard strong{display:block;color:var(--accent);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.timeCard h4{font-family:Georgia,serif;font-size:24px;margin:0 0 8px}
+.timeCard p{margin:0;color:var(--muted);line-height:1.55}
+.food{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.foodCard{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:24px}
+.foodCard h3{font-family:Georgia,serif;font-size:28px;margin:0 0 10px}
+.foodCard p{margin:0;color:var(--muted);line-height:1.65}
+.finish{
+  background:linear-gradient(145deg,#b78b69,#e2bc91 50%,#637b76 51%);
+  color:white;border-radius:40px;padding:58px;min-height:320px;display:flex;align-items:end;box-shadow:var(--shadow)
+}
+.finish h2{font-family:Georgia,serif;font-size:54px;font-weight:500;max-width:700px;margin:0 0 14px}
+.finish p{font-size:18px;line-height:1.65;max-width:660px;margin:0}
+.back{display:inline-flex;margin-top:25px;padding:13px 18px;border-radius:999px;background:var(--ink);color:white;font-weight:800}
+.footer{padding:50px 0 32px;border-top:1px solid var(--line);margin-top:46px}
+.footerGrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.footer p,.footer a{color:var(--muted);line-height:1.8;font-size:14px}
+.copyright{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:#878177;font-size:13px}
+@media(max-width:900px){
+  .heroGrid,.timeline,.food{grid-template-columns:1fr}
+  .heroCard{min-height:380px}
+  .sectionHead{align-items:flex-start;flex-direction:column}
+  .sectionHead p{margin-left:0}
+}
+@media(max-width:700px){
+  .navlinks{display:none}
+  .hero{padding-top:42px}
+  .lead{font-size:17px}
+  .stop{grid-template-columns:58px 1fr;gap:16px}
+  .stopNum{font-size:38px}
+  .stopBody h3{font-size:30px}
+  .tips{grid-template-columns:1fr}
+  .finish{padding:34px 26px}
+  .finish h2{font-size:40px}
+  .footerGrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">LIFE IS TRAVEL<span>пойдём гулять</span></a>
+    <nav class="navlinks">
+      <a href="#route">Маршрут</a>
+      <a href="#stops">Остановки</a>
+      <a href="#food">Что попробовать</a>
+      <a href="#tips">Советы</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container heroGrid">
+    <div>
+      <div class="kicker">Испания · Страна Басков</div>
+      <h1>Бильбао<br>за 1 день.</h1>
+      <p class="lead">От футуристического Гуггенхайма — вдоль Нервьона, через мост Zubizuri и улицы Casco Viejo — к pintxos и панораме города с Artxanda.</p>
+      <div class="metaBar">
+        <span>7–8 часов</span>
+        <span>Пешком + фуникулёр</span>
+        <span>Спокойный темп</span>
+        <span>Лучше начать утром</span>
+      </div>
+    </div>
+    <div class="heroCard">
+      <div class="museum"></div>
+      <div class="river"></div>
+      <div class="badge"><div><strong>1</strong>день<br>в Бильбао</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="route">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Маршрут дня</h2>
+      <p>Логика прогулки простая: современная архитектура → река → старый город → еда → панорама на закате.</p>
+    </div>
+    <div class="routeLine">
+      <span><b>01</b> Гуггенхайм</span><span>→</span>
+      <span><b>02</b> Нервьон</span><span>→</span>
+      <span><b>03</b> Zubizuri</span><span>→</span>
+      <span><b>04</b> Casco Viejo</span><span>→</span>
+      <span><b>05</b> Mercado de la Ribera</span><span>→</span>
+      <span><b>06</b> Собор</span><span>→</span>
+      <span><b>07</b> Artxanda</span>
+    </div>
+  </div>
+</section>
+
+<section id="stops">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Пойдём гулять</h2>
+      <p>Не спеши отмечать точки. Самое интересное в этом маршруте — как Бильбао меняется между ними.</p>
+    </div>
+
+    <article class="stop">
+      <div class="stopNum">01</div>
+      <div class="stopBody">
+        <h3>Музей Гуггенхайма</h3>
+        <p class="sub">Начинаем с символа современного Бильбао</p>
+        <p>Первую встречу с городом стоит начать у Guggenheim Museum Bilbao. Прежде чем заходить внутрь, обойди музей вокруг: со стороны реки особенно хорошо читаются изгибы здания и металлические поверхности.</p>
+        <div class="tips">
+          <div class="tip"><b>Посмотреть</b>Puppy и Maman</div>
+          <div class="tip"><b>Время</b>1,5–2 часа</div>
+          <div class="tip"><b>Совет</b>Если искусство не приоритет — сосредоточься на архитектуре снаружи</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">02</div>
+      <div class="stopBody">
+        <h3>Набережная Нервьона</h3>
+        <p class="sub">От титана — к воде</p>
+        <p>От Гуггенхайма не уходи сразу в город. Продолжай вдоль реки. Здесь не нужна отдельная достопримечательность: просто иди, смотри на воду и на современный Бильбао.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">03</div>
+      <div class="stopBody">
+        <h3>Мост Zubizuri</h3>
+        <p class="sub">Белая дуга над Нервьоном</p>
+        <p>Перейди реку по Zubizuri и остановись примерно посередине. Отсюда хорошо видно набережную и ту часть города, через которую ты только что прошёл.</p>
+        <div class="tips">
+          <div class="tip"><b>Сделать</b>Остановиться в центре моста</div>
+          <div class="tip"><b>Время</b>30–40 минут вместе с набережной</div>
+          <div class="tip"><b>Дальше</b>Casco Viejo</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="callout"><p>Современный Бильбао остаётся позади. Дальше маршрут становится теснее, старше и гораздо вкуснее.</p></div>
+
+    <article class="stop">
+      <div class="stopNum">04</div>
+      <div class="stopBody">
+        <h3>Casco Viejo</h3>
+        <p class="sub">Теперь можно немного потеряться</p>
+        <p>В Старом городе лучше временно забыть маршрут. Сворачивай в переулки, рассматривай балконы, старые вывески и маленькие магазины. Здесь важнее не количество достопримечательностей, а настроение улиц.</p>
+        <div class="tips">
+          <div class="tip"><b>Темп</b>Медленный</div>
+          <div class="tip"><b>Время</b>1–1,5 часа</div>
+          <div class="tip"><b>Правило</b>Не пытайся пройти всё</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">05</div>
+      <div class="stopBody">
+        <h3>Mercado de la Ribera</h3>
+        <p class="sub">Время попробовать Бильбао</p>
+        <p>После нескольких часов прогулки сделай гастрономическую паузу. Здесь лучше брать несколько небольших pintxos, а не один тяжёлый обед: так остановка остаётся частью прогулки.</p>
+        <div class="tips">
+          <div class="tip"><b>Попробовать</b>Pintxos</div>
+          <div class="tip"><b>Напиток</b>Txakoli</div>
+          <div class="tip"><b>Время</b>Около 1 часа</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">06</div>
+      <div class="stopBody">
+        <h3>Собор Святого Иакова</h3>
+        <p class="sub">Тихая остановка среди старых улиц</p>
+        <p>После рынка возвращайся в Casco Viejo. Собор — хорошая точка, чтобы замедлиться перед финальной частью маршрута и немного отдохнуть от шума улиц.</p>
+        <div class="tips">
+          <div class="tip"><b>Посмотреть</b>Фасад и интерьер</div>
+          <div class="tip"><b>Время</b>Около 30 минут</div>
+          <div class="tip"><b>После</b>К фуникулёру</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">07</div>
+      <div class="stopBody">
+        <h3>Artxanda</h3>
+        <p class="sub">Поднимаемся над городом</p>
+        <p>Финал маршрута — фуникулёр и панорама Бильбао сверху. Наверху попробуй найти реку, центр и районы, через которые ты прошёл за день. Лучше всего оставить эту точку на красивый вечерний свет.</p>
+        <div class="tips">
+          <div class="tip"><b>Лучшее время</b>Ближе к закату</div>
+          <div class="tip"><b>Время</b>45–60 минут</div>
+          <div class="tip"><b>Финал</b>Вернуться в Casco Viejo на pintxos</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Как распределить день</h2>
+      <p>Тайминг примерный. Лучше оставить запас на кофе, фотографии и случайные повороты.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeCard"><strong>Утро</strong><h4>Гуггенхайм</h4><p>Архитектура, набережная и первый взгляд на город.</p></div>
+      <div class="timeCard"><strong>До обеда</strong><h4>Zubizuri</h4><p>Прогулка вдоль Нервьона и переход к историческому центру.</p></div>
+      <div class="timeCard"><strong>День</strong><h4>Casco Viejo</h4><p>Старые улицы, рынок, pintxos и собор.</p></div>
+      <div class="timeCard"><strong>Вечер</strong><h4>Artxanda</h4><p>Панорама Бильбао и спокойное завершение дня.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="food">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Что попробовать</h2>
+      <p>Не устраивай один длинный обед. В Бильбао интереснее превратить еду в несколько небольших остановок.</p>
+    </div>
+    <div class="food">
+      <div class="foodCard"><h3>🥖 Pintxos</h3><p>Небольшие баскские закуски. Лучше взять несколько разных и делиться.</p></div>
+      <div class="foodCard"><h3>🦐 Морепродукты</h3><p>Хороший выбор для остановки на рынке или вечернего ужина.</p></div>
+      <div class="foodCard"><h3>🍷 Txakoli</h3><p>Традиционное баскское вино, которое хорошо подходит к лёгким закускам.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tips">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Если времени мало</h2>
+      <p>Не ускоряй весь маршрут. Просто оставь четыре главных впечатления.</p>
+    </div>
+    <div class="routeLine">
+      <span>Гуггенхайм</span><span>→</span><span>Нервьон</span><span>→</span><span>Casco Viejo</span><span>→</span><span>Artxanda</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="finish">
+      <div>
+        <h2>Не просто посмотреть город. Пройти его.</h2>
+        <p>Утром — титан Гуггенхайма. Днём — узкие улицы и pintxos. Вечером — весь Бильбао перед тобой. Именно поэтому этот город особенно хорошо знакомиться пешком.</p>
+        <a class="back" href="index.html">← Вернуться на главную</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footerGrid">
+      <div><div class="brand">LIFE IS TRAVEL<span>пойдём гулять</span></div><p>Авторские городские прогулки и маршруты, которые можно пройти самому.</p></div>
+      <div><p><strong>Бильбао за 1 день</strong><br>Испания · Страна Басков<br>Авторский маршрут Life is Travel</p></div>
+    </div>
+    <div class="copyright">© 2026 Life is Travel.</div>
+  </div>
+</footer>
+</body>
+</html>

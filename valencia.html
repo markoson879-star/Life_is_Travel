@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Валенсия за 1 день — Life is Travel</title>
+<meta name="description" content="Авторский маршрут по Валенсии на один день: Город искусств и наук, Сады Турии, Кафедральный собор, Шёлковая биржа, Центральный рынок и пляж Мальварроса." />
+<style>
+:root{
+  --bg:#f6f1e8;
+  --paper:#fffdf9;
+  --ink:#20201d;
+  --muted:#6f6c64;
+  --line:#d9d1c4;
+  --accent:#c95d3b;
+  --olive:#66705a;
+  --shadow:0 18px 50px rgba(54,42,27,.10);
+  --radius:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 5%,rgba(201,93,59,.08),transparent 24rem),
+    radial-gradient(circle at 88% 16%,rgba(102,112,90,.10),transparent 25rem),
+    var(--bg);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,calc(100% - 38px));margin:auto}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:rgba(246,241,232,.86);border-bottom:1px solid rgba(217,209,196,.8)}
+.nav{min-height:76px;display:flex;align-items:center;gap:26px}
+.brand{font-weight:900;letter-spacing:.08em;font-size:15px;margin-right:auto}
+.brand span{display:block;font-family:Georgia,serif;font-weight:500;font-style:italic;font-size:12px;letter-spacing:.04em;color:var(--muted);margin-top:3px}
+.navlinks{display:flex;gap:22px;color:#484640;font-size:14px}
+.navlinks a:hover{color:var(--accent)}
+.hero{padding:70px 0 54px}
+.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:58px;align-items:center}
+.kicker{display:inline-flex;gap:9px;align-items:center;text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:800;color:var(--accent)}
+.kicker:before{content:"";width:36px;height:1px;background:var(--accent)}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,7vw,96px);line-height:.93;letter-spacing:-.05em;margin:18px 0 22px;font-weight:500}
+.lead{font-size:20px;line-height:1.7;color:#5d5951;max-width:640px}
+.heroCard{
+  min-height:480px;border-radius:40px;overflow:hidden;box-shadow:var(--shadow);position:relative;
+  background:
+    linear-gradient(180deg,rgba(24,25,23,.02),rgba(24,25,23,.16)),
+    linear-gradient(145deg,#f2cf93 0 31%,#b8d0ca 31% 52%,#75909a 52% 68%,#e28b63 68% 100%);
+}
+.heroCard:before{
+  content:"VALENCIA";position:absolute;right:-55px;top:88px;font-family:Georgia,serif;
+  font-size:86px;color:rgba(255,255,255,.18);transform:rotate(90deg);transform-origin:center;
+}
+.heroCard .water{position:absolute;left:-10%;right:-10%;bottom:76px;height:105px;background:#5e8587;transform:rotate(-5deg)}
+.heroCard .arts{position:absolute;left:9%;bottom:123px;width:62%;height:205px;background:#f4e7d4;clip-path:polygon(0 68%,17% 48%,29% 18%,39% 54%,55% 10%,69% 55%,82% 29%,100% 78%,100% 100%,0 100%);filter:drop-shadow(0 15px 18px rgba(0,0,0,.14))}
+.heroCard .badge{position:absolute;right:28px;bottom:24px;background:var(--paper);border-radius:50%;width:150px;height:150px;display:grid;place-items:center;text-align:center;box-shadow:var(--shadow);font-family:Georgia,serif;font-style:italic;transform:rotate(7deg)}
+.heroCard .badge strong{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:34px;color:var(--accent)}
+.metaBar{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.metaBar span{padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:999px;color:#59564f;font-size:14px}
+section{padding:74px 0}
+.sectionHead{display:flex;gap:30px;align-items:end;margin-bottom:32px}
+.sectionHead h2{font-family:Georgia,serif;font-size:clamp(38px,5vw,62px);font-weight:500;letter-spacing:-.04em;margin:0}
+.sectionHead p{margin-left:auto;max-width:460px;line-height:1.65;color:var(--muted)}
+.routeLine{background:var(--paper);border:1px solid var(--line);border-radius:32px;padding:26px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;box-shadow:0 10px 28px rgba(41,35,28,.05)}
+.routeLine span{padding:10px 13px;background:#f1ede5;border-radius:999px;font-size:14px}
+.routeLine b{color:var(--accent)}
+.stop{display:grid;grid-template-columns:92px 1fr;gap:28px;padding:38px 0;border-top:1px solid var(--line)}
+.stop:first-of-type{border-top:0}
+.stopNum{font-family:Georgia,serif;font-size:48px;color:var(--accent);line-height:1}
+.stopBody h3{font-family:Georgia,serif;font-size:36px;font-weight:500;margin:0 0 8px}
+.stopBody .sub{font-size:18px;color:#5d5951;margin:0 0 18px}
+.stopBody p{line-height:1.8;color:#5b5750;font-size:17px}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.tip{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:16px}
+.tip b{display:block;margin-bottom:6px}
+.callout{background:var(--ink);color:white;border-radius:34px;padding:44px;margin:24px 0 6px;position:relative;overflow:hidden}
+.callout:after{content:"LIFE IS TRAVEL";position:absolute;right:-20px;bottom:-14px;font-weight:900;font-size:68px;letter-spacing:.05em;color:rgba(255,255,255,.045)}
+.callout p{font-family:Georgia,serif;font-size:28px;line-height:1.4;margin:0;position:relative;z-index:2}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.timeCard{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:20px}
+.timeCard strong{display:block;color:var(--accent);font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.timeCard h4{font-family:Georgia,serif;font-size:24px;margin:0 0 8px}
+.timeCard p{margin:0;color:var(--muted);line-height:1.55}
+.food{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.foodCard{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:24px}
+.foodCard h3{font-family:Georgia,serif;font-size:28px;margin:0 0 10px}
+.foodCard p{margin:0;color:var(--muted);line-height:1.65}
+.finish{background:linear-gradient(145deg,#d0a06c,#efc68a 45%,#78a39c 46%,#4f797d);color:white;border-radius:40px;padding:58px;min-height:320px;display:flex;align-items:end;box-shadow:var(--shadow)}
+.finish h2{font-family:Georgia,serif;font-size:54px;font-weight:500;max-width:700px;margin:0 0 14px}
+.finish p{font-size:18px;line-height:1.65;max-width:660px;margin:0}
+.back{display:inline-flex;margin-top:25px;padding:13px 18px;border-radius:999px;background:var(--ink);color:white;font-weight:800}
+.footer{padding:50px 0 32px;border-top:1px solid var(--line);margin-top:46px}
+.footerGrid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.footer p,.footer a{color:var(--muted);line-height:1.8;font-size:14px}
+.copyright{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:#878177;font-size:13px}
+@media(max-width:900px){.heroGrid,.timeline,.food{grid-template-columns:1fr}.heroCard{min-height:380px}.sectionHead{align-items:flex-start;flex-direction:column}.sectionHead p{margin-left:0}}
+@media(max-width:700px){.navlinks{display:none}.hero{padding-top:42px}.lead{font-size:17px}.stop{grid-template-columns:58px 1fr;gap:16px}.stopNum{font-size:38px}.stopBody h3{font-size:30px}.tips{grid-template-columns:1fr}.finish{padding:34px 26px}.finish h2{font-size:40px}.footerGrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="index.html">LIFE IS TRAVEL<span>пойдём гулять</span></a>
+    <nav class="navlinks">
+      <a href="#route">Маршрут</a>
+      <a href="#stops">Остановки</a>
+      <a href="#food">Что попробовать</a>
+      <a href="#tips">Советы</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container heroGrid">
+    <div>
+      <div class="kicker">Испания · Валенсия</div>
+      <h1>Валенсия<br>за 1 день.</h1>
+      <p class="lead">От футуристического Города искусств и наук — через зелёные Сады Турии и исторический центр — к Центральному рынку, морю и настоящей валенсийской паэлье.</p>
+      <div class="metaBar">
+        <span>6–8 часов</span>
+        <span>Пешком + городской транспорт</span>
+        <span>Спокойный темп</span>
+        <span>Финал у моря</span>
+      </div>
+    </div>
+    <div class="heroCard">
+      <div class="arts"></div>
+      <div class="water"></div>
+      <div class="badge"><div><strong>1</strong>день<br>в Валенсии</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="route">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Маршрут дня</h2>
+      <p>Современная архитектура → зелёная Валенсия → исторический центр → рынок → море и паэлья.</p>
+    </div>
+    <div class="routeLine">
+      <span><b>01</b> Город искусств и наук</span><span>→</span>
+      <span><b>02</b> Сады Турии</span><span>→</span>
+      <span><b>03</b> Кафедральный собор</span><span>→</span>
+      <span><b>04</b> Шёлковая биржа</span><span>→</span>
+      <span><b>05</b> Центральный рынок</span><span>→</span>
+      <span><b>06</b> Мальварроса</span>
+    </div>
+  </div>
+</section>
+
+<section id="stops">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Пойдём гулять</h2>
+      <p>Маршрут собран по исходной статье: шесть основных остановок и финал с паэльей у моря.</p>
+    </div>
+
+    <article class="stop">
+      <div class="stopNum">01</div>
+      <div class="stopBody">
+        <h3>Город искусств и наук</h3>
+        <p class="sub">Футуристический старт дня</p>
+        <p>Главный символ современной Валенсии. Комплекс Сантьяго Калатравы объединяет музей науки, океанариум, оперный театр и большие водные пространства.</p>
+        <div class="tips">
+          <div class="tip"><b>Что делать</b>Пройтись по территории и фотографировать архитектуру</div>
+          <div class="tip"><b>Если есть время</b>Зайти в музей науки или океанариум</div>
+          <div class="tip"><b>Время</b>1,5–2 часа</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">02</div>
+      <div class="stopBody">
+        <h3>Сады Турии</h3>
+        <p class="sub">Зелёный коридор через город</p>
+        <p>Огромный городской парк, созданный на месте бывшего русла реки Турия. Здесь маршрут становится спокойнее: зелёные аллеи, мосты разных эпох и места для короткой паузы.</p>
+        <div class="tips">
+          <div class="tip"><b>Что делать</b>Пройтись по аллеям</div>
+          <div class="tip"><b>Посмотреть</b>Мосты и фонтаны</div>
+          <div class="tip"><b>Время</b>40–60 минут</div>
+        </div>
+      </div>
+    </article>
+
+    <div class="callout"><p>От футуристической Валенсии маршрут постепенно переходит к историческому центру — без резкого разрыва, через длинную зелёную ось города.</p></div>
+
+    <article class="stop">
+      <div class="stopNum">03</div>
+      <div class="stopBody">
+        <h3>Кафедральный собор Валенсии</h3>
+        <p class="sub">История города и башня Микалет</p>
+        <p>Главный собор города. В исходном маршруте здесь стоит осмотреть внутренние залы, подняться на башню Микалет и посетить часовню Святого Грааля.</p>
+        <div class="tips">
+          <div class="tip"><b>Посмотреть</b>Интерьер собора</div>
+          <div class="tip"><b>Подняться</b>На башню Микалет</div>
+          <div class="tip"><b>Время</b>Около 1 часа</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">04</div>
+      <div class="stopBody">
+        <h3>Шёлковая биржа</h3>
+        <p class="sub">Готическая Валенсия</p>
+        <p>La Lonja de la Seda — один из ключевых памятников исторического центра и символ торгового прошлого города. Внутри особенно стоит увидеть главный зал с винтовыми колоннами и внутренний двор.</p>
+        <div class="tips">
+          <div class="tip"><b>Главное</b>Зал с винтовыми колоннами</div>
+          <div class="tip"><b>Ещё</b>Внутренний дворик</div>
+          <div class="tip"><b>Время</b>40–50 минут</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">05</div>
+      <div class="stopBody">
+        <h3>Центральный рынок</h3>
+        <p class="sub">Валенсия на вкус</p>
+        <p>Один из самых ярких гастрономических пунктов маршрута. Здесь можно попробовать местные продукты, взять хамон и сыр, выпить свежий апельсиновый сок и купить деликатесы.</p>
+        <div class="tips">
+          <div class="tip"><b>Попробовать</b>Хамон и местные сыры</div>
+          <div class="tip"><b>Выпить</b>Свежий апельсиновый сок</div>
+          <div class="tip"><b>Время</b>45–60 минут</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="stop">
+      <div class="stopNum">06</div>
+      <div class="stopBody">
+        <h3>Пляж Мальварроса</h3>
+        <p class="sub">Финал маршрута у Средиземного моря</p>
+        <p>Самый известный городской пляж Валенсии. Здесь день можно закончить прогулкой по набережной, купанием в сезон и ужином с настоящей валенсийской паэльей.</p>
+        <div class="tips">
+          <div class="tip"><b>Что делать</b>Пройтись по набережной</div>
+          <div class="tip"><b>В сезон</b>Искупаться</div>
+          <div class="tip"><b>Время</b>1–1,5 часа</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Как распределить день</h2>
+      <p>Не привязывайся к минутам. Это ориентир, чтобы успеть пройти маршрут спокойно.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeCard"><strong>Утро</strong><h4>Город искусств и наук</h4><p>Начни с современной архитектуры, пока день только набирает темп.</p></div>
+      <div class="timeCard"><strong>Позже утром</strong><h4>Сады Турии</h4><p>Пройди через зелёную часть города в сторону исторического центра.</p></div>
+      <div class="timeCard"><strong>День</strong><h4>Старый центр</h4><p>Собор, Шёлковая биржа и Центральный рынок.</p></div>
+      <div class="timeCard"><strong>Вечер</strong><h4>Мальварроса</h4><p>Море, набережная и финальная паэлья.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="food">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Что попробовать</h2>
+      <p>Гастрономическая часть маршрута заложена уже в исходной статье — рынок днём и паэлья у моря вечером.</p>
+    </div>
+    <div class="food">
+      <div class="foodCard"><h3>🍊 Апельсиновый сок</h3><p>Свежевыжатый сок на Центральном рынке — короткая и очень валенсийская остановка.</p></div>
+      <div class="foodCard"><h3>🧀 Хамон и сыры</h3><p>Подойдут для небольшой дегустации во время прогулки по рынку.</p></div>
+      <div class="foodCard"><h3>🥘 Паэлья</h3><p>Финал маршрута — ужин у моря с настоящей валенсийской паэльей.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tips">
+  <div class="container">
+    <div class="sectionHead">
+      <h2>Если времени мало</h2>
+      <p>Сохрани три разных лица города: современную архитектуру, исторический центр и море.</p>
+    </div>
+    <div class="routeLine">
+      <span>Город искусств и наук</span><span>→</span><span>Исторический центр</span><span>→</span><span>Центральный рынок</span><span>→</span><span>Мальварроса</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="finish">
+      <div>
+        <h2>От будущего города — к старым улицам и морю.</h2>
+        <p>Валенсия за один день успевает несколько раз поменять настроение: футуристическая архитектура, зелёный парк, готический центр, рынок и длинный средиземноморский вечер.</p>
+        <a class="back" href="index.html">← Вернуться на главную</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footerGrid">
+      <div><div class="brand">LIFE IS TRAVEL<span>пойдём гулять</span></div><p>Авторские городские прогулки и маршруты, которые можно пройти самому.</p></div>
+      <div><p><strong>Валенсия за 1 день</strong><br>Испания<br>Авторский маршрут Life is Travel</p></div>
+    </div>
+    <div class="copyright">© 2026 Life is Travel.</div>
+  </div>
+</footer>
+</body>
+</html>
